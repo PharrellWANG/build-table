@@ -70,30 +70,47 @@ class ExtractText:
 
         item_idx = -1
         for item in self.lineList1:
-            item_idx += 1
-            num_of_samples = int(item[self.START_POS_ONE:self.START_POS_ONE+9])
-            percentage = float(item[self.START_POS_TWO:self.START_POS_TWO+8])
 
-            num_of_samples1 = int(self.lineList2[item_idx][self.START_POS_ONE:self.START_POS_ONE+9])
-            percentage1 = float(self.lineList2[item_idx][self.START_POS_TWO:self.START_POS_TWO+8])
+            with open('output/latex_table_body.txt', 'a') as the_file:
+                # the_file.write('Hello\n')
 
-            num_of_samples2 = int(self.lineList3[item_idx][self.START_POS_ONE:self.START_POS_ONE+9])
-            percentage2 = float(self.lineList3[item_idx][self.START_POS_TWO:self.START_POS_TWO+8])
+                item_idx += 1
+                num_of_samples = int(item[self.START_POS_ONE:self.START_POS_ONE+9])
+                percentage = float(item[self.START_POS_TWO:self.START_POS_TWO+8])
 
-            num_of_samples3 = int(self.lineList4[item_idx][self.START_POS_ONE:self.START_POS_ONE+9])
-            percentage3 = float(self.lineList4[item_idx][self.START_POS_TWO:self.START_POS_TWO+8])
+                num_of_samples1 = int(self.lineList2[item_idx][self.START_POS_ONE:self.START_POS_ONE+9])
+                percentage1 = float(self.lineList2[item_idx][self.START_POS_TWO:self.START_POS_TWO+8])
 
-            print('%3d  %9d  %8s | %9d  %8s | %9d  %8s | %9d  %8s' %
-                  (item_idx,
-                   num_of_samples,
-                   '{0:.2f}'.format(round(percentage * 100, 2)),
-                   num_of_samples1,
-                   '{0:.2f}'.format(round(percentage1 * 100, 2)),
-                   num_of_samples2,
-                   '{0:.2f}'.format(round(percentage2 * 100, 2)),
-                   num_of_samples3,
-                   '{0:.2f}'.format(round(percentage3 * 100, 2)),
-                   ))
+                num_of_samples2 = int(self.lineList3[item_idx][self.START_POS_ONE:self.START_POS_ONE+9])
+                percentage2 = float(self.lineList3[item_idx][self.START_POS_TWO:self.START_POS_TWO+8])
+
+                num_of_samples3 = int(self.lineList4[item_idx][self.START_POS_ONE:self.START_POS_ONE+9])
+                percentage3 = float(self.lineList4[item_idx][self.START_POS_TWO:self.START_POS_TWO+8])
+
+                print(
+                    '%3d & %7d & %5s & %7d & %5s & %7d & %5s & %7d & %5s \\\\' %
+                    (item_idx,
+                     num_of_samples,
+                     '{0:.2f}'.format(round(percentage * 100, 2)),
+                     num_of_samples1,
+                     '{0:.2f}'.format(round(percentage1 * 100, 2)),
+                     num_of_samples2,
+                     '{0:.2f}'.format(round(percentage2 * 100, 2)),
+                     num_of_samples3,
+                     '{0:.2f}'.format(round(percentage3 * 100, 2)),
+                     ))
+                the_file.write(
+                    '%3d & %7d & %5s & %7d & %5s & %7d & %5s & %7d & %5s \\\\ \n' %
+                    (item_idx,
+                     num_of_samples,
+                     '{0:.2f}'.format(round(percentage * 100, 2)),
+                     num_of_samples1,
+                     '{0:.2f}'.format(round(percentage1 * 100, 2)),
+                     num_of_samples2,
+                     '{0:.2f}'.format(round(percentage2 * 100, 2)),
+                     num_of_samples3,
+                     '{0:.2f}'.format(round(percentage3 * 100, 2)),
+                     ))
 
         print('The length of list is: %d' % len(self.lineList1))
         print('========================== end')
