@@ -88,27 +88,27 @@ class ExtractText:
                 percentage3 = float(self.lineList4[item_idx][self.START_POS_TWO:self.START_POS_TWO+8])
 
                 print(
-                    '%3d & %7d & %5s & %7d & %5s & %7d & %5s & %7d & %5s \\\\' %
+                    '%3d & %s & %5s & %s & %5s & %s & %5s & %s & %5s \\\\' %
                     (item_idx,
-                     num_of_samples,
+                     '{:,}'.format(num_of_samples),
                      '{0:.2f}'.format(round(percentage * 100, 2)),
-                     num_of_samples1,
+                     '{:,}'.format(num_of_samples1),
                      '{0:.2f}'.format(round(percentage1 * 100, 2)),
-                     num_of_samples2,
+                     '{:,}'.format(num_of_samples2),
                      '{0:.2f}'.format(round(percentage2 * 100, 2)),
-                     num_of_samples3,
+                     '{:,}'.format(num_of_samples3),
                      '{0:.2f}'.format(round(percentage3 * 100, 2)),
                      ))
                 the_file.write(
-                    '%3d & %7d & %5s & %7d & %5s & %7d & %5s & %7d & %5s \\\\ \n' %
+                    '%3d & %s & %5s & %s & %5s & %s & %5s & %s & %5s \\\\ \n' %
                     (item_idx,
-                     num_of_samples,
+                     '{:,}'.format(num_of_samples),
                      '{0:.2f}'.format(round(percentage * 100, 2)),
-                     num_of_samples1,
+                     '{:,}'.format(num_of_samples1),
                      '{0:.2f}'.format(round(percentage1 * 100, 2)),
-                     num_of_samples2,
+                     '{:,}'.format(num_of_samples2),
                      '{0:.2f}'.format(round(percentage2 * 100, 2)),
-                     num_of_samples3,
+                     '{:,}'.format(num_of_samples3),
                      '{0:.2f}'.format(round(percentage3 * 100, 2)),
                      ))
 
