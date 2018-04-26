@@ -6,7 +6,6 @@ def replace_underscore(entry):
         return entry
     return entry
 
-
 class ExtractText:
     """The class for read .txt file(s) and extract text.
 
@@ -36,19 +35,19 @@ class ExtractText:
             self.lineList4 = []
 
     def read_lines_into_list(self, file_name):
-
-        file = open(file_name, 'r')
-        cnt = 0
-        for line in file:
-            cnt += 1
-            if self.LINE_IDX < cnt < self.LINE_IDX+38:
-                self.lineList1.append(line)
+        """
+            Read all lines into a list
+        """
+        with open(file_name, 'r') as f:
+            for cnt, line in enumerate(f):
+                if self.LINE_IDX < cnt + 1 < self.LINE_IDX + 38:
+                    self.lineList1.append(line)
 
     def print_lists(self):
-
-        item_idx = -1
-        for item in self.lineList1:
-            item_idx += 1
+        """
+            Print list
+        """
+        for item_idx, item in enumerate(self.lineList1):
             num_of_samples = int(item[self.START_POS_ONE:self.START_POS_ONE+9])
             percentage = float(item[self.START_POS_TWO:self.START_POS_TWO+8])
             print('%3d  %9d  %8s' % (item_idx, num_of_samples, '{0:.2f}'.format(round(percentage*100, 2))))
@@ -56,37 +55,21 @@ class ExtractText:
         print('The length of list is: %d' % len(self.lineList1))
         print('========================== end of lineList1')
 
-
     def read_lines_into_multiple_lists(self, list_of_file_names):
-
-        file = open(list_of_file_names[0], 'r')
-        cnt = 0
-        for line in file:
-            cnt += 1
-            if self.LINE_IDX < cnt < self.LINE_IDX+38:
-                self.lineList1.append(line)
-
-        file = open(list_of_file_names[1], 'r')
-        cnt = 0
-        for line in file:
-            cnt += 1
-            if self.LINE_IDX < cnt < self.LINE_IDX+38:
-                self.lineList2.append(line)
-
-        file = open(list_of_file_names[2], 'r')
-        cnt = 0
-        for line in file:
-            cnt += 1
-            if self.LINE_IDX < cnt < self.LINE_IDX+38:
-                self.lineList3.append(line)
-
-        file = open(list_of_file_names[3], 'r')
-        cnt = 0
-        for line in file:
-            cnt += 1
-            if self.LINE_IDX < cnt < self.LINE_IDX+38:
-                self.lineList4.append(line)
-
+        """
+            Read lines into multiple lines
+        """
+        line_list = [
+            self.lineList1,
+            self.lineList2,
+            self.lineList3,
+            self.lineList4
+        ]
+        for line, filename in zip(line_list, list_of_file_names):
+            with open(filename, 'r') as f:
+                for cnt, f_line in enumerate(f):
+                    if self.LINE_IDX < cnt + 1 < self.LINE_IDX+38:
+                        line.append(f_line)
 
     def print_full_lists(self):
 
